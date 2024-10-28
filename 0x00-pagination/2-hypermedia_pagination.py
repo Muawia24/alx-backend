@@ -73,6 +73,6 @@ class Server:
         if page > 1:
             hyper_dic["prev_page"] = page - 1
 
-        hyper_dic["total_pages"] = len(dataset)
+        hyper_dic["total_pages"] = math.ceil(len(dataset) / page_size)
 
         return hyper_dic
