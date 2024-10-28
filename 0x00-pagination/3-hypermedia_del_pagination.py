@@ -46,15 +46,15 @@ class Server:
         hyper_dic = {}
         page_data = []
 
-        assert index >= 0 and index <= idxs[-1]
+        assert index is not None and index >= 0 and index <= idxs[-1]
 
-        index = index if index else 0
+        idx = index if index else 0
 
         count = 0
         next_index = None
 
         for k, v in data.items():
-            if k >= index and count < page_size:
+            if k >= idx and count < page_size:
                 page_data.append(v)
                 count += 1
                 continue
