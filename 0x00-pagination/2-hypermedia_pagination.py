@@ -65,7 +65,7 @@ class Server:
         hyper_dic["page"] = page
         hyper_dic["data"] = page_data
 
-        if page < len(page_data) - 1:
+        if page < len(dataset) - 1:
             hyper_dic["next_page"] = page + 1
         else:
             hyper_dic["next_page"] = None
