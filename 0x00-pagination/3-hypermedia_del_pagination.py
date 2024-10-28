@@ -45,11 +45,13 @@ class Server:
         idxs = sorted(data.keys())
         hyper_dic = {}
         page_data = []
-        index = index if index else 0
 
         assert index >= 0 and index <= idxs[-1]
 
+        index = index if index else 0
+
         count = 0
+        next_index = None
 
         for k, v in data.items():
             if k >= index and count < page_size:
