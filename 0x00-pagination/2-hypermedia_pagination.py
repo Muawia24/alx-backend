@@ -65,13 +65,15 @@ class Server:
         hyper_dic["page"] = page
         hyper_dic["data"] = page_data
 
-        if page < len(dataset) - 1:
+        if page < len(dataset) - 1 and page_data:
             hyper_dic["next_page"] = page + 1
         else:
             hyper_dic["next_page"] = None
 
         if page > 1:
             hyper_dic["prev_page"] = page - 1
+        else:
+            hyper_dic["prev_page"] = None
 
         hyper_dic["total_pages"] = math.ceil(len(dataset) / page_size)
 
