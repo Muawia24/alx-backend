@@ -8,7 +8,10 @@ from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
+    """
+    Basic dictionary
 
+    """
     def put(self, key, item):
         """
         Assign to the dictionary self.cache_data the item
