@@ -9,7 +9,10 @@ from base_caching import BaseCaching
 
 
 class LRUCache(BaseCaching):
-
+    """
+    LRU Caching Class
+    Discard the least recently used item (LRU algorithm)
+    """
     def __init__(self):
         super().__init__()
         self.cache_data = OrderedDict()
