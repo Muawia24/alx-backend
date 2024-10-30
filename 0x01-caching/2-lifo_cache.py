@@ -9,7 +9,10 @@ from base_caching import BaseCaching
 
 
 class LIFOCache(BaseCaching):
-
+    """
+     LIFO Caching class
+     Discards the last item put in cache (LIFO algorithm)
+     """
     def __init__(self):
         super().__init__()
         self.cache_data = OrderedDict()
