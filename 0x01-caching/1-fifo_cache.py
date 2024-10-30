@@ -8,6 +8,10 @@ from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
+    """
+    FIFO caching class
+    Discards the first item put in cache (FIFO algorithm)
+    """
     def put(self, key, item):
         """
         Assign to the dictionary self.cache_data the item
