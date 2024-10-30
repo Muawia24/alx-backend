@@ -9,7 +9,10 @@ from base_caching import BaseCaching
 
 
 class LFUCache(BaseCaching):
-
+    """
+    LFU Caching Class
+    Discard the least frequency used item
+    """
     def __init__(self):
         super().__init__()
         self.cache_data = OrderedDict()
@@ -49,7 +52,7 @@ class LFUCache(BaseCaching):
         return self.cache_data.get(key)
 
     def evict(self):
-        # Find the least frequently used items
+        """ Find the least frequently used items """
         min_freq = min(self.freq_counts.values())
         lfu_keys = [k for k, v in self.freq_counts.items() if v == min_freq]
 
