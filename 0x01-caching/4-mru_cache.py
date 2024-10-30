@@ -9,7 +9,10 @@ from base_caching import BaseCaching
 
 
 class MRUCache(BaseCaching):
-
+    """
+    Class MRUCache
+    Discard the most recently used item (MRU algorithm)
+    """
     def __init__(self):
         super().__init__()
         self.cache_data = OrderedDict()
