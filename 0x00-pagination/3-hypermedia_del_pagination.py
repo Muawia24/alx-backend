@@ -41,6 +41,9 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """
+         Deletion-resilient hypermedia pagination
+        """
         data = self.indexed_dataset()
         idxs = sorted(data.keys())
         hyper_dic = {}
