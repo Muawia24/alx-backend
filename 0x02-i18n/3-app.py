@@ -6,10 +6,13 @@
 
 from flask import Flask, render_template
 from flask_babel import Babel
+from flask import request
 
 
-class Config:
-    """Config class"""
+class Config(object):
+    """
+    Config class
+    """
 
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
@@ -19,7 +22,6 @@ class Config:
 app = Flask(__name__)
 
 app.config.from_object(Config)
-app.url_map.strict_slashes = False
 
 babel = Babel(app)
 
@@ -32,7 +34,7 @@ def get_locale() -> str:
     return request.accept_languages.best_match(app.config[''LANGUAGES])
 
 
-@app.route("/")
+@app.route("/", strict_slashes=False)
 def hello_holberton() -> str:
     """
     Welcome to Holberton
