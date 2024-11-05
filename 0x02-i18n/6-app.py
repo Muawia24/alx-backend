@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-4. Force locale with URL parameter
+6. Use user locale
 """
 
 from typing import Dict, Union
@@ -34,6 +34,12 @@ def get_locale() -> str:
     locale = request.args.get('locale', '').strip()
     if locale and locale in Config.LANGUAGES:
         return locale
+    if g.get('user') and g.user.get('locale') in Config.LANGUAGES:
+        return g.user['locale']
+    header_locale = request.accept_languages.best_match(app.config['LANGUAGES'])
+    if header_locale:
+        return header_locale
+
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
@@ -73,7 +79,7 @@ def hello_holberton() -> str:
     """
     Welcome to Holberton
     """
-    return render_template("5-index.html")
+    return render_template("6-index.html")
 
 
 if __name__ == "__main__":
