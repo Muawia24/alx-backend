@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
-6. Use user locale
+7. Infer appropriate time zone
 """
+
 
 from typing import Dict, Union
 from flask import Flask, render_template
 from flask_babel import Babel
 from flask import request, g
+import pytz
 
 
 class Config(object):
@@ -42,6 +44,23 @@ def get_locale() -> str:
         return header_locale
 
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
+@babel.timezoneselector
+def get_timezone() -> str:
+    """
+        return:
+            timezone
+    """
+    timezone = request.args.get('timezone', '').strip()
+    if timezone:
+        return timezone
+    if not timezone and g.get('user') and g.user.get('timezone'):
+        timezone = g.user['timezone']
+    try:
+        return pytz.timezone(timezone)
+    except pytz.exceptions.UnknownTimeZoneError:
+        return app.config['BABEL_DEFAULT_TIMEZONE']
 
 
 users = {
@@ -80,7 +99,7 @@ def hello_holberton() -> str:
     """
     Welcome to Holberton
     """
-    return render_template("6-index.html")
+    return render_template("7-index.html")
 
 
 if __name__ == "__main__":
